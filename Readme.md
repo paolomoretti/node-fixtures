@@ -12,9 +12,9 @@ Install via npm:
 
 ## Usage
 
-### The project will look for a directory named `fixtures` which must be child of your `test` directory in order to load all the fixtures (*.js or *.json files):
+#### The project will look for a directory named `fixtures` which must be child of your `test` directory in order to load all the fixtures (*.js or *.json files):
 
-#### File: test\fixtures\users.json
+##### File: test\fixtures\users.json
 
 ```js
     {
@@ -29,7 +29,7 @@ Install via npm:
   }
 ```
 
-####  File: test\fixtures\relations.js
+#####  File: test\fixtures\relations.js
 
 ```js
     [{
@@ -42,23 +42,25 @@ Install via npm:
         "to": "innaro"
     },{
         "rel": "husband",
-        "from": "innaro"
-        "to": "dearwish",
+        "from": "innaro",
+        "to": "dearwish"
     }]
 ```
 
-#### Access fixtures depending on the name you gave to your fixtures files.
+##### Access fixtures depending on the name you gave to your fixtures files.
  
 ```js
     var fx = require('node-fixtures');
 
-    fx.users.dearwish.name; // => "David"
+    fx.users.dearwish.name;    // => "David"
+    fx.users.relations[0].rel; // => "loves"
+    fx.users.innaro.name;      // => "Inna"
 ```
 
-#### Reset the fixtures on either setup or teardown when the fixtures were modified on tests:
+##### Reset the fixtures on either setup or teardown when the fixtures were modified on tests:
  
 ```js
-    fx.reload();
+    fx.reset();
 ```
 
 ## License
