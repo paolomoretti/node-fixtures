@@ -52,9 +52,9 @@ Install via npm:
 ```js
     var fx = require('node-fixtures');
 
-    fx.users.dearwish.name;    // => "David"
-    fx.users.relations[0].rel; // => "loves"
-    fx.users.innaro.name;      // => "Inna"
+    fx.users.dearwish.name;  // => "David"
+    fx.relations[0].rel;     // => "loves"
+    fx.users.innaro.name;    // => "Inna"
 ```
 
 ##### Reset the fixtures on either setup or teardown when the fixtures were modified on tests:
