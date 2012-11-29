@@ -8,66 +8,59 @@
 
 Install via npm:
 
-    $ npm install fixtures
+    $ npm install node-fixtures
 
 ## Usage
 
-The project will look for a directory named  `fixtures` which must be child of your `test` directory in order to load all the fixtures:
+### The project will look for a directory named `fixtures` which must be child of your `test` directory in order to load all the fixtures (*.js or *.json files):
 
-test\fixtures\users.js
+#### File: test\fixtures\users.json
 
 ```js
-  {
-    "my_own_user": {
-      "name": "Charles",
-      "type": "M"
-    },
-    "female": {
-      "name": "Susana",
-      "type": "F"
-    }
+    {
+        "dearwish": {
+            "name": "David",
+            "gender": "male"
+        },
+        "innaro": {
+            "name": "Inna",
+            "gender": "female"
+        }
   }
 ```
 
-Access fixtures depending on the name you gave to your fixtures files.
- 
+####  File: test\fixtures\relations.js
+
 ```js
-
-  fx = require('fixtures');
-
-  fx.users.my_own_user.name; ("Charles")
-
+    [{
+        "rel": "loves",
+        "from": "dearwish",
+        "to": "innaro"
+    },{
+        "rel": "wife",
+        "from": "dearwish",
+        "to": "innaro"
+    },{
+        "rel": "husband",
+        "from": "innaro"
+        "to": "dearwish",
+    }]
 ```
 
-Reload the fixtures on either setup or teardown when the fixtures were modified on tests
+#### Access fixtures depending on the name you gave to your fixtures files.
  
 ```js
+    var fx = require('node-fixtures');
 
-  fx.reload();
+    fx.users.dearwish.name; // => "David"
+```
 
+#### Reset the fixtures on either setup or teardown when the fixtures were modified on tests:
+ 
+```js
+    fx.reload();
 ```
 
 ## License
 
-(The MIT License)
-
-Copyright (c) 2011 Pepe Cano &lt;ppcanodehuelva@gmail.com&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT
