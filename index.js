@@ -7,6 +7,8 @@ var fs = require('fs'),
 // Fixtures are private
 var _fixtures = {};
 
+var confDirname = 'tests'
+
 /**
  * Fixtures constructor.
  */
@@ -100,7 +102,7 @@ function _endsWith(str, a) {
 	} else {
 		a = a.toString().replace(/(^\/)|(\/$)/g, "");
 	}
-	return eval("/" + a + "$/.test(str)");
+	return eval("/" + a + "$/."+confDirname+"(str)");
 }
 
 /**
@@ -115,18 +117,18 @@ function _findPath () {
 		dirname = path.basename(dirpath),
 		fpath;
 
-	if (fs.existsSync(path.join(dirpath, 'test'))) {
-		dirpath = path.join(dirpath, 'test');
-		dirname = 'test';
+	if (fs.existsSync(path.join(dirpath, confDirname))) {
+		dirpath = path.join(dirpath, confDirname);
+		dirname = confDirname;
 	} else {
 		// TODO exit strategy can be improved.
-		while( dirname !== 'test' && dirname !=='' ) {
+		while( dirname !== confDirname && dirname !=='' ) {
 			dirpath = path.join( dirpath, '..');
 			dirname = path.basename(dirpath);
 		}
 	}
 
-	if ( dirname === 'test' ) {
+	if ( dirname === confDirname ) {
 		fpath = path.join( dirpath, 'fixtures');
 		if ( fs.existsSync( fpath ) ) {
 			return fpath;
