@@ -102,7 +102,7 @@ function _endsWith(str, a) {
 	} else {
 		a = a.toString().replace(/(^\/)|(\/$)/g, "");
 	}
-	return eval("/" + a + "$/."+confDirname+"(str)");
+	return eval("/" + a + "$/.test(str)");
 }
 
 /**
